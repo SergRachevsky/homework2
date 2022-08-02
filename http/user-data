@@ -2,7 +2,7 @@
 autoinstall:
   version: 1
   early-commands:
-  - sudo systemctl stop ssh
+  - systemctl stop sshd
   users:
   - default
   - name: ubuntu

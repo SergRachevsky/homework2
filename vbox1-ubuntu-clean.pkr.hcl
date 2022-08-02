@@ -13,7 +13,7 @@ source "virtualbox-iso" "vbox1-ubuntu-clean" {
 
   boot_command = [
     "c",
-    "<wait>linux /casper/vmlinuz ip=dhcp autoinstall ds='nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/' --- <enter>",
+    "<wait>linux /casper/vmlinuz ip=dhcp autoinstall ds='nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/'<enter>",
     "<wait>initrd /casper/initrd <enter>",
     "<wait>boot <enter>",
   ]
@@ -35,6 +35,7 @@ source "virtualbox-iso" "vbox1-ubuntu-clean" {
   ssh_timeout         = var.ssh_timeout
   ssh_username        = "ubuntu"
   ssh_password        = "ubuntu"
+  
   vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--rtcuseutc", "off"]
   ]
@@ -43,4 +44,12 @@ source "virtualbox-iso" "vbox1-ubuntu-clean" {
 
 build {
   sources = ["sources.virtualbox-iso.vbox1-ubuntu-clean"]
+
+  // provisioner "shell" {
+  //   inline = [
+  //     "cloud-init status --wait",
+  //     "sudo apt-get update && sudo apt-get upgrade -y"
+  //   ]
+  // }
 }
+
