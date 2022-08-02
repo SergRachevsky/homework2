@@ -20,14 +20,14 @@ source "virtualbox-iso" "vbox1-ubuntu-clean" {
 
   http_directory = "http"
 
-  boot_wait    = "10s"
+  boot_wait    = "8s"
   communicator = "ssh"
 
   vm_name       = "vbox1-ubuntu-clean"
   guest_os_type = "Ubuntu_64"
   cpus          = "4"
   memory        = "2048"
-  disk_size     = "5000"
+  disk_size     = "10000"
 
   post_shutdown_delay = "0s"
   shutdown_command    = "echo 'ubuntu' | sudo -E -S poweroff"
@@ -45,11 +45,11 @@ source "virtualbox-iso" "vbox1-ubuntu-clean" {
 build {
   sources = ["sources.virtualbox-iso.vbox1-ubuntu-clean"]
 
-  // provisioner "shell" {
-  //   inline = [
-  //     "cloud-init status --wait",
-  //     "sudo apt-get update && sudo apt-get upgrade -y"
-  //   ]
-  // }
+  provisioner "shell" {
+    inline = [
+      "cloud-init status --wait",
+      "sudo apt-get update && sudo apt-get upgrade -y"
+    ]
+  }
 }
 
