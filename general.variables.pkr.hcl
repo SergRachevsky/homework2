@@ -36,3 +36,18 @@ variable "ssh_password_crypted" {
   type    = string
   default = ""
 }
+
+variable "stage1_name" {
+  type    = string
+  default = "vbox1-ubuntu-clean"
+}
+
+variable "stage2_name" {
+  type    = string
+  default = "vbox2-ubuntu-agent-docker-ansible"
+}
+
+variable "output_dir" {
+  type    = string
+  default = "builds"
+}

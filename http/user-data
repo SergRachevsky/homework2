@@ -3,11 +3,6 @@ autoinstall:
   version: 1
   early-commands:
   - systemctl stop sshd
-  users:
-  - default
-  - name: ubuntu
-    lock_passwd: false
-    passwd: "$6$WbY0ANNqW7TrGXZK$H/EN6Bhe0E1W6E1a6Klb8FXVBixcBcjZZPHirI6CA1hxJz6I2lGLSlxICdAMp6IO2g9jJUj0ZjAh8CKLj9AjP."
   write_files:
   - path: /etc/ssh/sshd_config
     content: |

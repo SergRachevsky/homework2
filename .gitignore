@@ -8,4 +8,7 @@ crash.log
 *.box
 
 # Ignore Virtualbox images
-output-*/
+builds/
+
+# temp dir
+1/

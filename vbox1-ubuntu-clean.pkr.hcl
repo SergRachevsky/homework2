@@ -1,11 +1,3 @@
-packer {
-  required_plugins {
-    virtualbox = {
-      version = ">= 0.0.1"
-      source  = "github.com/hashicorp/virtualbox"
-    }
-  }
-}
 
 source "virtualbox-iso" "vbox1-ubuntu-clean" {
   iso_url      = "https://mirror.library.ucy.ac.cy/linux/ubuntu/releases/jammy/ubuntu-22.04-live-server-amd64.iso"
@@ -23,33 +15,36 @@ source "virtualbox-iso" "vbox1-ubuntu-clean" {
   boot_wait    = "8s"
   communicator = "ssh"
 
-  vm_name       = "vbox1-ubuntu-clean"
-  guest_os_type = "Ubuntu_64"
-  cpus          = "4"
-  memory        = "2048"
-  disk_size     = "20000"
+  vm_name          = var.stage1_name
+  output_directory = "${var.output_dir}/${var.stage1_name}"
+  guest_os_type    = "Ubuntu_64"
+  cpus             = "4"
+  memory           = "2048"
+  disk_size        = "20000"
 
-  post_shutdown_delay = "0s"
-  shutdown_command    = "echo '${var.ssh_password}' | sudo -E -S poweroff"
-  shutdown_timeout    = var.shutdown_timeout
-  ssh_timeout         = var.ssh_timeout
-  ssh_username        = var.ssh_username
-  ssh_password        = var.ssh_password
+  shutdown_command = "echo '${var.ssh_password}' | sudo -E -S poweroff"
+  shutdown_timeout = var.shutdown_timeout
+  ssh_timeout      = var.ssh_timeout
+  ssh_username     = var.ssh_username
+  ssh_password     = var.ssh_password
 
   vboxmanage = [
-    ["modifyvm", "{{ .Name }}", "--rtcuseutc", "off"]
+    ["modifyvm", "{{ .Name }}", "--rtcuseutc", "off"],
+    ["modifyvm", "{{ .Name }}", "--natpf1", "guest_ssh,tcp,,2222,,22"]
   ]
+
+  keep_registered = true
+  skip_export     = false
 
 }
 
 build {
-  sources = ["sources.virtualbox-iso.vbox1-ubuntu-clean"]
+  sources = ["sources.virtualbox-iso.${var.stage1_name}"]
 
   provisioner "shell" {
     inline = [
       "cloud-init status --wait",
-      "sudo apt-get update && sudo apt-get upgrade -y"
+      "sudo apt update && sudo apt upgrade -y"
     ]
   }
 }
-

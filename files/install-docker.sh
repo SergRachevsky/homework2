@@ -16,9 +16,8 @@ sudo apt install -y \
     docker-ce \
     docker-ce-cli \
     containerd.io \
+    docker-compose \
     docker-compose-plugin
 
 # Allow 'ubuntu' user to run docker without 'sudo'
 sudo usermod -aG docker ubuntu
-
-

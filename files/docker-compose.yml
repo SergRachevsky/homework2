@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+
+  teamcity-agent-1:
+    image: jetbrains/teamcity-agent
+    privileged: true
+    restart: always
+    volumes:
+      - /opt/teamcity-agents/agent-1/conf:/data/teamcity_agent/conf
+    environment:
+      SERVER_URL: "radogor.teamcity.com"
