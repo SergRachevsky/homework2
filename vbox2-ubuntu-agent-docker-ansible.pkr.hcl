@@ -41,7 +41,8 @@ build {
     scripts = [
       "files/install-common.sh",
       "files/install-ansible.sh",
-      "files/install-docker.sh"
+      "files/install-docker.sh",
+      "files/install-prometheus.sh",
     ]
   }
 

@@ -32,5 +32,10 @@ build {
       "docker-compose up -d",
     ]
   }
+  provisioner "shell" {
+    scripts = [
+      "files/install-prometheus.sh",
+    ]
+  }
 
 }

@@ -30,7 +30,8 @@ source "virtualbox-iso" "vbox1-ubuntu-clean" {
 
   vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--rtcuseutc", "off"],
-    ["modifyvm", "{{ .Name }}", "--natpf1", "guest_ssh,tcp,,2222,,22"]
+    ["modifyvm", "{{ .Name }}", "--natpf1", "guest_ssh,tcp,,2222,,22"],
+    ["modifyvm", "{{ .Name }}", "--natpf1", "guest_ssh,tcp,,29100,,9100"],
   ]
 
   keep_registered = true
