@@ -1,4 +1,3 @@
-
 source "virtualbox-ovf" "vbox2-ubuntu-agent-docker-ansible" {
   source_path = "${var.output_dir}/${var.stage1_name}/${var.stage1_name}.ovf"
 
@@ -12,10 +11,6 @@ source "virtualbox-ovf" "vbox2-ubuntu-agent-docker-ansible" {
   ssh_password = var.ssh_password
 
   shutdown_command = "echo '${var.ssh_password}' | sudo -E -S poweroff"
-
-  // vboxmanage = [
-  //   ["modifyvm", "{{ .Name }}", "--rtcuseutc", "off"],
-  // ]
 
   keep_registered = true
   skip_export     = false

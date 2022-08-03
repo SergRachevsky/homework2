@@ -47,6 +47,11 @@ variable "stage2_name" {
   default = "vbox2-ubuntu-agent-docker-ansible"
 }
 
+variable "stage3_name" {
+  type    = string
+  default = "vbox2-ubuntu-agent-docker-ansible_stage3"
+}
+
 variable "output_dir" {
   type    = string
   default = "builds"
