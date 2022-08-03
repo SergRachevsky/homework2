@@ -3,7 +3,7 @@ source "virtualbox-ovf" "vbox2-ubuntu-agent-docker-ansible" {
 
   communicator = "ssh"
 
-  vm_name = var.stage2_name
+  vm_name          = var.stage2_name
   output_directory = "${var.output_dir}/${var.stage2_name}"
 
   ssh_timeout  = var.ssh_timeout

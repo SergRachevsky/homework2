@@ -1,9 +1,9 @@
-source "virtualbox-ovf" "vbox2-ubuntu-agent-docker-ansible-stage2" {
+source "virtualbox-ovf" "vbox2-ubuntu-agent-docker-ansible_stage3" {
   source_path = "${var.output_dir}/${var.stage2_name}/${var.stage2_name}.ovf"
 
   communicator = "ssh"
 
-  vm_name = var.stage3_name
+  vm_name          = var.stage3_name
   output_directory = "${var.output_dir}/${var.stage3_name}"
 
   ssh_timeout  = var.ssh_timeout
@@ -17,8 +17,8 @@ source "virtualbox-ovf" "vbox2-ubuntu-agent-docker-ansible-stage2" {
 }
 
 build {
-  sources = ["sources.virtualbox-ovf.${var.stage2_name}"]
-  
+  sources = ["sources.virtualbox-ovf.${var.stage3_name}"]
+
   // provisioner "shell" {
   //   inline = [
   //     "sudo mkdir -p /opt/teamcity-agents/agent-1/conf/",
