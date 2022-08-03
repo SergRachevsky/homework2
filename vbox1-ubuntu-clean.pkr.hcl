@@ -27,15 +27,15 @@ source "virtualbox-iso" "vbox1-ubuntu-clean" {
   guest_os_type = "Ubuntu_64"
   cpus          = "4"
   memory        = "2048"
-  disk_size     = "10000"
+  disk_size     = "20000"
 
   post_shutdown_delay = "0s"
-  shutdown_command    = "echo 'ubuntu' | sudo -E -S poweroff"
+  shutdown_command    = "echo '${var.ssh_password}' | sudo -E -S poweroff"
   shutdown_timeout    = var.shutdown_timeout
   ssh_timeout         = var.ssh_timeout
-  ssh_username        = "ubuntu"
-  ssh_password        = "ubuntu"
-  
+  ssh_username        = var.ssh_username
+  ssh_password        = var.ssh_password
+
   vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--rtcuseutc", "off"]
   ]
