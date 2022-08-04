@@ -1,8 +1,4 @@
 
-variable "ssh_timeout" {
-  type    = string
-  default = "20m"
-}
 variable "shutdown_timeout" {
   type    = string
   default = "5m"
@@ -37,6 +33,26 @@ variable "ssh_password_crypted" {
   default = ""
 }
 
+variable "ssh_timeout" {
+  type    = string
+  default = "1h"
+}
+
+variable "winrm_password" {
+  type    = string
+  default = ""
+}
+
+variable "winrm_username" {
+  type    = string
+  default = ""
+}
+
+variable "winrm_timeout" {
+  type    = string
+  default = "3h"
+}
+
 variable "stage1_name" {
   type    = string
   default = "vbox1-ubuntu-clean"
@@ -49,7 +65,12 @@ variable "stage2_name" {
 
 variable "stage3_name" {
   type    = string
-  default = "vbox2-ubuntu-agent-docker-ansible_stage3"
+  default = "vbox3-win2022-clean"
+}
+
+variable "stage4_name" {
+  type    = string
+  default = "vbox4-win2022-agent"
 }
 
 variable "output_dir" {

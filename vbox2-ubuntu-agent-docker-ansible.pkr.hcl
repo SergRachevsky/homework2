@@ -43,12 +43,25 @@ build {
       "files/install-ansible.sh",
       "files/install-docker.sh",
       "files/install-prometheus.sh",
+      "files/start-compose.sh",
     ]
   }
 
-  // provisioner "shell" {
-  //   inline = [
-  //     "cd /opt/teamcity-agents; docker-compose up -d",
-  //   ]
-  // }
+  provisioner "shell" {
+    inline = [
+      "cd /opt/teamcity-agents",
+      "echo '==1====================================='",
+      "echo 'ubuntu' | sudo -S -u ubuntu docker pull jetbrains/teamcity-agent",
+      "echo '==2====================================='",
+      "echo 'ubuntu' | sudo -S -u ubuntu docker-compose up -d",
+      "echo '==3====================================='",
+      
+      
+      // "newgrp docker",
+      // "echo 'ubuntu' | su - ubuntu",
+      // "docker pull jetbrains/teamcity-agent",
+      // "sudo docker-compose up -d",
+    ]
+  }
+
 }

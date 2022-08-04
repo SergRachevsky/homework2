@@ -20,4 +20,7 @@ sudo apt install -y \
     docker-compose-plugin
 
 # Allow 'ubuntu' user to run docker without 'sudo'
-sudo usermod -aG docker ubuntu
+# sudo groupadd docker
+# sudo usermod -aG docker ubuntu
+# newgrp docker
+# su -s ubuntu

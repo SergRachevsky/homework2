@@ -1,4 +1,4 @@
-!/bin/sh
+#!/bin/sh
 
 PROMETHEUS=node_exporter-1.3.1.linux-amd64
 
