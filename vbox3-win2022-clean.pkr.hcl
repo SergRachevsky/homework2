@@ -8,11 +8,11 @@ source "virtualbox-iso" "vbox3-win2022-clean" {
   disk_size = 25000
 
   floppy_files = [
-    "files/Autounattend.xml",
-    "files/disable-winrm.ps1",
-    "files/enable-winrm.ps1",
-    "files/win-updates.ps1",
-    "files/microsoft-updates.bat",
+    "files/win2022/Autounattend.xml",
+    "files/win2022/disable-winrm.ps1",
+    "files/win2022/enable-winrm.ps1",
+    "files/win2022/win-updates.ps1",
+    "files/win2022/microsoft-updates.bat",
   ]
 
   guest_additions_interface = "sata"
@@ -58,9 +58,9 @@ build {
 
   provisioner "powershell" {
     scripts = [
-      "files/install-guest-additions.ps1",
-      "files/install-far.ps1",
-      "files/install-buildtools.ps1",
+      "files/win2022/install-guest-additions.ps1",
+      "files/win2022/install-far.ps1",
+      "files/win2022/install-buildtools.ps1",
     ]
   }
 

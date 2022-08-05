@@ -55,9 +55,9 @@ build {
   }
 
   provisioner "file" {
-    direction = "download"
-    source = "c:/windows/temp/autoinstalled-software.csv"
-    destination = "${var.output_dir}/installed-software-vbox4-win2022-agent.csv"
+    direction   = "download"
+    source      = "c:/windows/temp/autoinstalled-software.csv"
+    destination = "${var.output_dir}/installed-software-vbox4-win2022.csv"
   }
 
 

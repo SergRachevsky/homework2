@@ -18,9 +18,3 @@ sudo apt install -y \
     containerd.io \
     docker-compose \
     docker-compose-plugin
-
-# Allow 'ubuntu' user to run docker without 'sudo'
-# sudo groupadd docker
-# sudo usermod -aG docker ubuntu
-# newgrp docker
-# su -s ubuntu

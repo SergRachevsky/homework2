@@ -28,40 +28,41 @@ build {
   }
 
   provisioner "file" {
-    source      = "files/buildAgent.properties"
+    source      = "files/ubuntu/buildAgent.properties"
     destination = "/opt/teamcity-agents/agent-1/conf/buildAgent.properties"
   }
 
   provisioner "file" {
-    source      = "files/common/docker-compose.yml"
+    source      = "files/ubuntu/docker-compose.yml"
     destination = "/opt/teamcity-agents/docker-compose.yml"
   }
 
   provisioner "shell" {
     scripts = [
-      "files/install-common.sh",
-      "files/install-ansible.sh",
-      "files/install-docker.sh",
-      "files/install-prometheus.sh",
-      "files/start-compose.sh",
+      "files/ubuntu/install-common.sh",
+      "files/ubuntu/install-ansible.sh",
+      "files/ubuntu/install-docker.sh",
+      "files/ubuntu/install-prometheus.sh",
+      // "files/start-compose.sh",
     ]
   }
 
   provisioner "shell" {
     inline = [
       "cd /opt/teamcity-agents",
-      "echo '==1====================================='",
-      "echo 'ubuntu' | sudo -S -u ubuntu docker pull jetbrains/teamcity-agent",
-      "echo '==2====================================='",
-      "echo 'ubuntu' | sudo -S -u ubuntu docker-compose up -d",
-      "echo '==3====================================='",
-
-
-      // "newgrp docker",
-      // "echo 'ubuntu' | su - ubuntu",
-      // "docker pull jetbrains/teamcity-agent",
-      // "sudo docker-compose up -d",
+      "sudo usermod -aG docker ${var.ssh_username}",
+      "echo Pulling 'jetbrains/teamcity-agent' docker image",
+      "echo ${var.ssh_password} | sudo -S -u ${var.ssh_username} docker pull jetbrains/teamcity-agent",
+      "echo Starting container with 'jetbrains/teamcity-agent'",
+      "echo ${var.ssh_password} | sudo -S -u ${var.ssh_username} docker-compose up -d",
     ]
   }
+
+  provisioner "file" {
+    direction   = "download"
+    source      = "/var/tmp/autoinstalled-software.csv"
+    destination = "${var.output_dir}/installed-software-vbox2-ubuntu.csv"
+  }
+
 
 }
