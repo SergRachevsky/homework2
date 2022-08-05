@@ -7,6 +7,6 @@ services:
     privileged: true
     restart: always
     volumes:
-      - /opt/teamcity-agents/agent-1/conf:/data/teamcity_agent/conf
+      - /opt/teamcity-agents/agent/conf:/data/teamcity_agent/conf
     environment:
       SERVER_URL: "radogor.teamcity.com"

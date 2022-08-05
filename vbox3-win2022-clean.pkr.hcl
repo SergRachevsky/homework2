@@ -5,7 +5,7 @@ source "virtualbox-iso" "vbox3-win2022-clean" {
 
   cpus      = 6
   memory    = 4096
-  disk_size = 20000
+  disk_size = 25000
 
   floppy_files = [
     "files/Autounattend.xml",
@@ -37,6 +37,8 @@ source "virtualbox-iso" "vbox3-win2022-clean" {
     ["modifyvm", "{{ .Name }}", "--nictype2", "82540EM"],
     ["modifyvm", "{{ .Name }}", "--nictype3", "82540EM"],
     ["modifyvm", "{{ .Name }}", "--nictype4", "82540EM"],
+    ["modifyvm", "{{ .Name }}", "--natpf1", "guest_prometheus,tcp,,39182,,9182"],
+
   ]
   communicator   = "winrm"
   winrm_username = var.winrm_username
@@ -57,7 +59,6 @@ build {
   provisioner "powershell" {
     scripts = [
       "files/install-guest-additions.ps1",
-      // "files/install-guest-additions2.ps1",
       "files/install-far.ps1",
       "files/install-buildtools.ps1",
     ]

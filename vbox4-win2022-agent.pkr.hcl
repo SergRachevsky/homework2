@@ -7,6 +7,8 @@ source "virtualbox-ovf" "vbox4-win2022-agent" {
   vm_name          = var.stage4_name
   output_directory = "${var.output_dir}/${var.stage4_name}"
 
+  guest_additions_mode = "disable"
+
   winrm_username = var.winrm_username
   winrm_password = var.winrm_password
   winrm_timeout  = var.winrm_timeout
@@ -25,28 +27,38 @@ build {
 
   provisioner "powershell" {
     scripts = [
-      "files/install-docker.ps1",
+      "files/win2022/install-prometheus.ps1",
     ]
   }
 
-
- provisioner "windows-shell" {
+  provisioner "windows-shell" {
     inline = [
-      "mkdir -p c:/opt/teamcity-agents/agent-2/conf",
+      "mkdir c:\\buildAgent\\conf",
     ]
   }
 
   provisioner "file" {
     source      = "files/win2022/buildAgent.properties"
-    destination = "c:/opt/teamcity-agents/agent-2/conf/buildAgent.properties"
+    destination = "c:\\buildAgent\\conf\\buildAgent.properties"
+  }
+
+  provisioner "powershell" {
+    scripts = [
+      "files/win2022/install-agent.ps1",
+    ]
+  }
+
+  provisioner "powershell" {
+    scripts = [
+      "files/win2022/make-software-list.ps1",
+    ]
   }
 
   provisioner "file" {
-    source      = "files/common/docker-compose.yml"
-    destination = "/opt/teamcity-agents/docker-compose.yml"
+    direction = "download"
+    source = "c:/windows/temp/autoinstalled-software.csv"
+    destination = "${var.output_dir}/installed-software-vbox4-win2022-agent.csv"
   }
-
-
 
 
 }

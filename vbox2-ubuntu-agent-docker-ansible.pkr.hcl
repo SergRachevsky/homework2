@@ -33,7 +33,7 @@ build {
   }
 
   provisioner "file" {
-    source      = "files/docker-compose.yml"
+    source      = "files/common/docker-compose.yml"
     destination = "/opt/teamcity-agents/docker-compose.yml"
   }
 
@@ -55,8 +55,8 @@ build {
       "echo '==2====================================='",
       "echo 'ubuntu' | sudo -S -u ubuntu docker-compose up -d",
       "echo '==3====================================='",
-      
-      
+
+
       // "newgrp docker",
       // "echo 'ubuntu' | su - ubuntu",
       // "docker pull jetbrains/teamcity-agent",
