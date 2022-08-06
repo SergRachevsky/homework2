@@ -21,6 +21,7 @@ build {
 
   provisioner "shell" {
     inline = [
+      "echo *** Creating directory for TCA agent configuration...",
       "cloud-init status --wait",
       "sudo mkdir -p /opt/teamcity-agents/agent/conf",
       "sudo chmod -R a+rw /opt/teamcity-agents"
@@ -48,16 +49,54 @@ build {
 
   provisioner "shell" {
     inline = [
-      "cd /opt/teamcity-agents",
+      "echo *** Adding user to 'docker' group...",
       "sudo usermod -aG docker ${var.ssh_username}",
-      "echo Pulling 'jetbrains/teamcity-agent' docker image",
-      "echo ${var.ssh_password} | sudo -S -u ${var.ssh_username} docker pull jetbrains/teamcity-agent",
-      "echo Starting container with 'jetbrains/teamcity-agent'",
-      "echo ${var.ssh_password} | sudo -S -u ${var.ssh_username} docker-compose up -d",
     ]
   }
 
   provisioner "shell" {
+    inline = [
+      "echo *** Rebooting...",
+      "sudo reboot",
+    ]
+    expect_disconnect = true
+  }
+
+  provisioner "shell" {
+    pause_before = "15s"
+    inline = [
+      "cd /opt/teamcity-agents",
+      "echo *** Pulling 'jetbrains/teamcity-agent' docker image...",
+      "docker pull jetbrains/teamcity-agent",
+      "echo *** Starting container with 'jetbrains/teamcity-agent'...",
+      "docker-compose up -d",
+    ]
+  }
+
+  // provisioner "shell" {
+  //   pause_before = "30s"
+  //   inline = [
+  //     "cd /opt/teamcity-agents",
+  //     "sudo usermod -aG docker ${var.ssh_username}",
+  //     "echo Pulling 'jetbrains/teamcity-agent' docker image",
+  //     "echo ${var.ssh_password} | sudo -S -u ${var.ssh_username} docker pull jetbrains/teamcity-agent",
+  //     "echo Starting container with 'jetbrains/teamcity-agent'",
+  //     "echo ${var.ssh_password} | sudo -S -u ${var.ssh_username} docker-compose up -d",
+  //   ]
+  // }
+
+
+
+  provisioner "shell" {
+    inline = [
+      "echo *** Rebooting...",
+      "sudo reboot",
+    ]
+    expect_disconnect = true
+  }
+
+  provisioner "shell" {
+    pause_before = "20s"
     scripts = [
       "files/ubuntu/make-software-list.sh",
     ]

@@ -8,7 +8,8 @@ crash.log
 *.box
 
 # Ignore Virtualbox images
-builds/
+*.vmdk
+*.vdi
 
 # temp dir
 1/

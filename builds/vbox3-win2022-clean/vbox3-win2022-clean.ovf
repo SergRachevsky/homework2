@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<Envelope ovf:version="1.0" xml:lang="en-US" xmlns="http://schemas.dmtf.org/ovf/envelope/1" xmlns:ovf="http://schemas.dmtf.org/ovf/envelope/1" xmlns:rasd="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData" xmlns:vssd="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_VirtualSystemSettingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vbox="http://www.virtualbox.org/ovf/machine">
+  <References>
+    <File ovf:id="file1" ovf:href="vbox3-win2022-clean-disk001.vmdk"/>
+  </References>
+  <DiskSection>
+    <Info>List of the virtual disks used in the package</Info>
+    <Disk ovf:capacity="26214400000" ovf:diskId="vmdisk1" ovf:fileRef="file1" ovf:format="http://www.vmware.com/interfaces/specifications/vmdk.html#streamOptimized" vbox:uuid="abd9dd94-63bc-4076-a7af-a383e440375f"/>
+  </DiskSection>
+  <NetworkSection>
+    <Info>Logical networks used in the package</Info>
+    <Network ovf:name="NAT">
+      <Description>Logical network used by this appliance.</Description>
+    </Network>
+  </NetworkSection>
+  <VirtualSystem ovf:id="vbox3-win2022-clean">
+    <Info>A virtual machine</Info>
+    <OperatingSystemSection ovf:id="118">
+      <Info>The kind of installed guest operating system</Info>
+      <Description>Windows2016_64</Description>
+      <vbox:OSType ovf:required="false">Windows2019_64</vbox:OSType>
+    </OperatingSystemSection>
+    <VirtualHardwareSection>
+      <Info>Virtual hardware requirements for a virtual machine</Info>
+      <System>
+        <vssd:ElementName>Virtual Hardware Family</vssd:ElementName>
+        <vssd:InstanceID>0</vssd:InstanceID>
+        <vssd:VirtualSystemIdentifier>vbox3-win2022-clean</vssd:VirtualSystemIdentifier>
+        <vssd:VirtualSystemType>virtualbox-2.2</vssd:VirtualSystemType>
+      </System>
+      <Item>
+        <rasd:Caption>6 virtual CPU</rasd:Caption>
+        <rasd:Description>Number of virtual CPUs</rasd:Description>
+        <rasd:ElementName>6 virtual CPU</rasd:ElementName>
+        <rasd:InstanceID>1</rasd:InstanceID>
+        <rasd:ResourceType>3</rasd:ResourceType>
+        <rasd:VirtualQuantity>6</rasd:VirtualQuantity>
+      </Item>
+      <Item>
+        <rasd:AllocationUnits>MegaBytes</rasd:AllocationUnits>
+        <rasd:Caption>4096 MB of memory</rasd:Caption>
+        <rasd:Description>Memory Size</rasd:Description>
+        <rasd:ElementName>4096 MB of memory</rasd:ElementName>
+        <rasd:InstanceID>2</rasd:InstanceID>
+        <rasd:ResourceType>4</rasd:ResourceType>
+        <rasd:VirtualQuantity>4096</rasd:VirtualQuantity>
+      </Item>
+      <Item>
+        <rasd:Address>0</rasd:Address>
+        <rasd:Caption>sataController0</rasd:Caption>
+        <rasd:Description>SATA Controller</rasd:Description>
+        <rasd:ElementName>sataController0</rasd:ElementName>
+        <rasd:InstanceID>3</rasd:InstanceID>
+        <rasd:ResourceSubType>AHCI</rasd:ResourceSubType>
+        <rasd:ResourceType>20</rasd:ResourceType>
+      </Item>
+      <Item>
+        <rasd:Address>0</rasd:Address>
+        <rasd:Caption>usb</rasd:Caption>
+        <rasd:Description>USB Controller</rasd:Description>
+        <rasd:ElementName>usb</rasd:ElementName>
+        <rasd:InstanceID>4</rasd:InstanceID>
+        <rasd:ResourceType>23</rasd:ResourceType>
+      </Item>
+      <Item>
+        <rasd:AddressOnParent>0</rasd:AddressOnParent>
+        <rasd:Caption>disk1</rasd:Caption>
+        <rasd:Description>Disk Image</rasd:Description>
+        <rasd:ElementName>disk1</rasd:ElementName>
+        <rasd:HostResource>/disk/vmdisk1</rasd:HostResource>
+        <rasd:InstanceID>5</rasd:InstanceID>
+        <rasd:Parent>3</rasd:Parent>
+        <rasd:ResourceType>17</rasd:ResourceType>
+      </Item>
+      <Item>
+        <rasd:AutomaticAllocation>true</rasd:AutomaticAllocation>
+        <rasd:Caption>Ethernet adapter on 'NAT'</rasd:Caption>
+        <rasd:Connection>NAT</rasd:Connection>
+        <rasd:ElementName>Ethernet adapter on 'NAT'</rasd:ElementName>
+        <rasd:InstanceID>6</rasd:InstanceID>
+        <rasd:ResourceSubType>E1000</rasd:ResourceSubType>
+        <rasd:ResourceType>10</rasd:ResourceType>
+      </Item>
+    </VirtualHardwareSection>
+    <vbox:Machine ovf:required="false" version="1.15-linux" uuid="{5c1a4097-3bad-4f4a-8d45-b41b811b04d6}" name="vbox3-win2022-clean" OSType="Windows2019_64" snapshotFolder="Snapshots" lastStateChange="2022-08-06T00:01:18Z">
+      <ovf:Info>Complete VirtualBox machine configuration in VirtualBox format</ovf:Info>
+      <ExtraData>
+        <ExtraDataItem name="GUI/LastNormalWindowPosition" value="640,268,1024,812"/>
+      </ExtraData>
+      <Hardware>
+        <CPU count="6">
+          <PAE enabled="true"/>
+          <LongMode enabled="true"/>
+          <HardwareVirtExLargePages enabled="false"/>
+        </CPU>
+        <Memory RAMSize="4096"/>
+        <HID Pointing="USBTablet"/>
+        <Paravirt provider="Default"/>
+        <Boot>
+          <Order position="1" device="HardDisk"/>
+          <Order position="2" device="DVD"/>
+          <Order position="3" device="None"/>
+          <Order position="4" device="None"/>
+        </Boot>
+        <Display controller="VBoxSVGA" VRAMSize="128" accelerate3D="true"/>
+        <RemoteDisplay enabled="false">
+          <VRDEProperties>
+            <Property name="TCP/Address" value="127.0.0.1"/>
+            <Property name="TCP/Ports" value="5946"/>
+          </VRDEProperties>
+        </RemoteDisplay>
+        <BIOS>
+          <IOAPIC enabled="true"/>
+          <SmbiosUuidLittleEndian enabled="true"/>
+        </BIOS>
+        <USB>
+          <Controllers>
+            <Controller name="OHCI" type="OHCI"/>
+          </Controllers>
+        </USB>
+        <Network>
+          <Adapter slot="0" enabled="true" MACAddress="0800278A0B9E" cable="true" type="82540EM">
+            <NAT>
+              <Forwarding name="guest_prometheus" proto="1" hostport="39182" guestport="9182"/>
+            </NAT>
+          </Adapter>
+        </Network>
+        <AudioAdapter driver="Pulse" enabled="false" enabledIn="false" enabledOut="false"/>
+        <Clipboard/>
+        <GuestProperties>
+          <GuestProperty name="/VirtualBox/HostInfo/GUI/LanguageID" value="en_US" timestamp="1659744078183187000" flags=""/>
+        </GuestProperties>
+      </Hardware>
+      <StorageControllers>
+        <StorageController name="SATA Controller" type="AHCI" PortCount="15" useHostIOCache="false" Bootable="true" IDE0MasterEmulationPort="0" IDE0SlaveEmulationPort="1" IDE1MasterEmulationPort="2" IDE1SlaveEmulationPort="3">
+          <AttachedDevice type="HardDisk" hotpluggable="false" port="0" device="0">
+            <Image uuid="{abd9dd94-63bc-4076-a7af-a383e440375f}"/>
+          </AttachedDevice>
+        </StorageController>
+      </StorageControllers>
+    </vbox:Machine>
+  </VirtualSystem>
+</Envelope>
