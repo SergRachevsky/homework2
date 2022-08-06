@@ -22,14 +22,14 @@ build {
   provisioner "shell" {
     inline = [
       "cloud-init status --wait",
-      "sudo mkdir -p /opt/teamcity-agents/agent-1/conf",
-      "sudo chmod -R 777 /opt/teamcity-agents"
+      "sudo mkdir -p /opt/teamcity-agents/agent/conf",
+      "sudo chmod -R a+rw /opt/teamcity-agents"
     ]
   }
 
   provisioner "file" {
     source      = "files/ubuntu/buildAgent.properties"
-    destination = "/opt/teamcity-agents/agent-1/conf/buildAgent.properties"
+    destination = "/opt/teamcity-agents/agent/conf/buildAgent.properties"
   }
 
   provisioner "file" {
@@ -43,7 +43,6 @@ build {
       "files/ubuntu/install-ansible.sh",
       "files/ubuntu/install-docker.sh",
       "files/ubuntu/install-prometheus.sh",
-      // "files/start-compose.sh",
     ]
   }
 
@@ -55,6 +54,12 @@ build {
       "echo ${var.ssh_password} | sudo -S -u ${var.ssh_username} docker pull jetbrains/teamcity-agent",
       "echo Starting container with 'jetbrains/teamcity-agent'",
       "echo ${var.ssh_password} | sudo -S -u ${var.ssh_username} docker-compose up -d",
+    ]
+  }
+
+  provisioner "shell" {
+    scripts = [
+      "files/ubuntu/make-software-list.sh",
     ]
   }
 
