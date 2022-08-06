@@ -8,11 +8,11 @@
 
 Используемый гипервизор -- **Virtualbox**.
 
-#### VM Ubuntu-agent
+#### VM vbox2-ubuntu-agent
 
-Внутри финальной VM Ubuntu автоматически установлено следующее ПО:
- - **Ubuntu 22.04** с последними обновлениями
- - ```docker``` и ```docker-compose```
+Внутри финальной VM **vbox2-ubuntu-agent** автоматически установлено следующее ПО:
+ - Ubuntu 22.04 с последними обновлениями
+ - docker и docker-compose
  - ansible
  - Prometheus node exporter
  - TeamCity build agent (заускается внутри docker-контейнера)
