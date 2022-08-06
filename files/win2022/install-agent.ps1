@@ -1,7 +1,7 @@
 
 
-# Download JFK
-Write-Output "Downloading JDK..."
+# Download JRE
+Write-Output "Downloading JRE..."
 Invoke-WebRequest "https://corretto.aws/downloads/resources/11.0.15.9.1/amazon-corretto-11.0.15.9.1-windows-x64-jdk.zip" -UseBasicParsing -OutFile $env:TEMP\jdk.zip
 Expand-Archive $env:TEMP\jdk.zip -DestinationPath $env:TEMP\
 Move-Item $env:TEMP\jdk11.0.15_9  c:\JRE
