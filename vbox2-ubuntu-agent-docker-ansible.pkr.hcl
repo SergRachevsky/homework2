@@ -73,28 +73,6 @@ build {
     ]
   }
 
-  // provisioner "shell" {
-  //   pause_before = "30s"
-  //   inline = [
-  //     "cd /opt/teamcity-agents",
-  //     "sudo usermod -aG docker ${var.ssh_username}",
-  //     "echo Pulling 'jetbrains/teamcity-agent' docker image",
-  //     "echo ${var.ssh_password} | sudo -S -u ${var.ssh_username} docker pull jetbrains/teamcity-agent",
-  //     "echo Starting container with 'jetbrains/teamcity-agent'",
-  //     "echo ${var.ssh_password} | sudo -S -u ${var.ssh_username} docker-compose up -d",
-  //   ]
-  // }
-
-
-
-  // provisioner "shell" {
-  //   inline = [
-  //     "echo *** Rebooting...",
-  //     "sudo reboot",
-  //   ]
-  //   expect_disconnect = true
-  // }
-
   provisioner "shell" {
     pause_before = "20s"
     scripts = [
