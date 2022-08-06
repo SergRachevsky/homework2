@@ -87,13 +87,13 @@ build {
 
 
 
-  provisioner "shell" {
-    inline = [
-      "echo *** Rebooting...",
-      "sudo reboot",
-    ]
-    expect_disconnect = true
-  }
+  // provisioner "shell" {
+  //   inline = [
+  //     "echo *** Rebooting...",
+  //     "sudo reboot",
+  //   ]
+  //   expect_disconnect = true
+  // }
 
   provisioner "shell" {
     pause_before = "20s"
@@ -107,6 +107,4 @@ build {
     source      = "/var/tmp/autoinstalled-software.csv"
     destination = "${var.output_dir}/installed-software-vbox2-ubuntu.csv"
   }
-
-
 }
