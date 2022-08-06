@@ -46,6 +46,13 @@
  - для VM Ubuntu: http://HOST_IP:29100/metrics
  - для VM Win2022: http://HOST_IP:39182/metrics
 
+
+#### Список автоматически установленного ПО
+
+В процессе создания финальных образов создаются списки автоматически установленного ПО. По окончанию создания образлв формируются файлы со списоком ПО:
+ - ./builds/autoinstalled-software-ubuntu.csv
+ - ./builds/autoinstalled-software-win2022.csv
+
 ### Использование
 
 Для создания образов и запуска виртуальных машин можно использовать скрипты:
@@ -53,16 +60,10 @@
   - ```run.sh``` (запускаются две финальные VM с установленными TeamCity build agents)
   - ```build-and-run.sh``` (создаются все четыре образа VM в формате OVF и запускаются две финальные VM с установленными TeamCity build agents)
 
-В файлы build/autoinstalled-software-*.csv записыватся список версий автоматически установленных программ
+### Про пароли
 
- 
-
- 
-
-```packer validate -var-file="secret.pkrvars.hcl" .```
-
-```packer fmt -var-file="secret.pkrvars.hcl" .```
-
-```vboxmanage import vbox1-ubuntu-clean.ovf```
-
-```vboxmanage import --vsys 0 --vmname vbox2-ubuntu-agent-docker-ansible vbox1-ubuntu-clean.ovf```
+Администратоивные логины и пароли хранятся в файле ```secret.pkrvars.hcl``` и при запуске packer подключаются в явном виде, например, так:
+```
+packer build -var-file="secret.pkrvars.hcl" -only=virtualbox-ovf.vbox4-win2022-agent .
+```
+При реальном использовании файл ```secret.pkrvars.hcl``` не должен находится в git-репозитории и оставлен здесь намеренно в целях проверки тестового задания.
