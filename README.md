@@ -39,19 +39,7 @@
 #### TeamCity build agents
 
 На обеих финальных VM запускается TeamCity build agent, который подключается к TeamCity Server (radogor.teamcity.com).
-
-#### Prometheus
-
-На обеих фианльных VM запускаются Prometheus node exporters, доступные по следующим адресам:
- - для VM Ubuntu: http://HOST_IP:29100/metrics
- - для VM Win2022: http://HOST_IP:39182/metrics
-
-
-#### Список автоматически установленного ПО
-
-В процессе создания финальных образов создаются списки автоматически установленного ПО. По окончанию создания образлв формируются файлы со списоком ПО:
- - ./builds/autoinstalled-software-ubuntu.csv
- - ./builds/autoinstalled-software-win2022.csv
+[Скриншот](Screenshot from 2022-08-06 16-33-55.png) показывает состояние TeamCity server в этот момент.
 
 ### Использование
 
