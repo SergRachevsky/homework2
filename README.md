@@ -1,10 +1,10 @@
 # homework2
 
 В рамках тестового задания созданы шаблоны для packer, на основе которых формируются образы четырех виртуальных машин:
-  Базовый образ Ubuntu 22.04 (OS из официального iso + обновления) 
-  Базовый образ + Teamcity Agent + docker & docker-compose & ansible (должен строиться из предыдущего)
-  Базовый образ Windows Server 2022 + Visual Studio Build Tools 
-  Базовый образ + Teamcity Agent (из предыдущего) 
+  - Базовый образ Ubuntu 22.04 (OS из официального iso + обновления) 
+  - Базовый образ + Teamcity Agent + docker & docker-compose & ansible (строится из предыдущего)
+  - Базовый образ Windows Server 2022 + Visual Studio Build Tools 
+  - Базовый образ + Teamcity Agent (строится из предыдущего) 
 
 Используемый гипервизор -- Virtualbox.
 
