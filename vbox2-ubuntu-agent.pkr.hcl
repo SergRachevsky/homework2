@@ -1,4 +1,4 @@
-source "virtualbox-ovf" "vbox2-ubuntu-agent-docker-ansible" {
+source "virtualbox-ovf" "vbox2-ubuntu-agent" {
   source_path = "${var.output_dir}/${var.stage1_name}/${var.stage1_name}.ovf"
 
   communicator = "ssh"

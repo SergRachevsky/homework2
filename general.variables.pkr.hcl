@@ -60,7 +60,7 @@ variable "stage1_name" {
 
 variable "stage2_name" {
   type    = string
-  default = "vbox2-ubuntu-agent-docker-ansible"
+  default = "vbox2-ubuntu-agent"
 }
 
 variable "stage3_name" {

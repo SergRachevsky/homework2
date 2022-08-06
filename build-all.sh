@@ -9,7 +9,7 @@ echo vbox1: $ELAPSED >> build-all.log
 
 
 SECONDS=0
-packer build -var-file="secret.pkrvars.hcl" -only=virtualbox-ovf.vbox2-ubuntu-agent-docker-ansible .
+packer build -var-file="secret.pkrvars.hcl" -only=virtualbox-ovf.vbox2-ubuntu-agent .
 ELAPSED="Elapsed: $(($SECONDS / 3600))hrs $((($SECONDS / 60) % 60))min $(($SECONDS % 60))sec"
 echo vbox2: $ELAPSED >> build-all.log
 

@@ -2,9 +2,9 @@
 
 В рамках тестового задания созданы шаблоны для ```packer```, на основе которых формируются образы четырех виртуальных машин:
   - **vbox1-ubuntu-clean**: Базовый образ **Ubuntu 22.04** (OS из официального iso + обновления) 
-  - **vbox2-ubuntu-clean**: Базовый образ + Teamcity Agent + docker & docker-compose & ansible (строится из предыдущего)
-  - **vbox3-ubuntu-clean**: Базовый образ **Windows Server 2022** + Visual Studio Build Tools 
-  - **vbox4-ubuntu-clean**: Базовый образ + Teamcity Agent (строится из предыдущего) 
+  - **vbox2-ubuntu-agent**: Базовый образ + Teamcity Agent + docker & docker-compose & ansible (строится из предыдущего)
+  - **vbox3-win2022-clean**: Базовый образ **Windows Server 2022** + Visual Studio Build Tools 
+  - **vbox4-win2022-agent**: Базовый образ + Teamcity Agent (строится из предыдущего) 
 
 Используемый гипервизор -- **Virtualbox**.
 
