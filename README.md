@@ -39,7 +39,8 @@
 #### TeamCity build agents
 
 На обеих финальных VM запускается TeamCity build agent, который подключается к TeamCity Server (radogor.teamcity.com).
-[Скриншот](Screenshot from 2022-08-06 16-33-55.png) показывает состояние TeamCity server в этот момент.
+
+[Скриншот](https://github.com/SergRachevsky/homework2/blob/main/Screenshot%20from%202022-08-06%2016-33-55.png) показывает состояние TeamCity server в этот момент.
 
 ### Использование
 
